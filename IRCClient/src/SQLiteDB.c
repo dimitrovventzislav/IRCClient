@@ -120,7 +120,6 @@ void irc_sq_lite_db_CreateDB (void) {
 	sqlite3* _tmp2_;
 	gint _result_;
 	char* createLog;
-	fprintf (stdout, "%s\n", IRC_SQ_LITE_DB__path);
 	_result_ = (_tmp1_ = sqlite3_open (IRC_SQ_LITE_DB__path, &_tmp0_), irc_sq_lite_db_DataBase = (_tmp2_ = _tmp0_, _sqlite3_close0 (irc_sq_lite_db_DataBase), _tmp2_), _tmp1_);
 	createLog = g_strdup ("CREATE TABLE MyLogData (Username TEXT, Message TEXT NULL, Channel TEXT" \
 ", Server TEXT, Timestamp INTEGER)");

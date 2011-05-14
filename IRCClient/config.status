@@ -448,7 +448,7 @@ Copyright (C) 2010 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC'
+ac_pwd='/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -931,7 +931,7 @@ S["MAINTAINER_MODE_FALSE"]=""
 S["MAINTAINER_MODE_TRUE"]="#"
 S["am__untar"]="${AMTAR} xf -"
 S["am__tar"]="${AMTAR} chof - \"$$tardir\""
-S["AMTAR"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing\" --run tar"
+S["AMTAR"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing\" --run tar"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
 S["AWK"]="mawk"
@@ -939,12 +939,12 @@ S["mkdir_p"]="/bin/mkdir -p"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]="strip"
-S["install_sh"]="${SHELL} '/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/install-sh'"
-S["MAKEINFO"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing\" --run makeinfo"
-S["AUTOHEADER"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing\" --run autoheader"
-S["AUTOMAKE"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing\" --run automake-1.11"
-S["AUTOCONF"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing\" --run autoconf"
-S["ACLOCAL"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing\" --run aclocal-1.11"
+S["install_sh"]="${SHELL} '/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/install-sh'"
+S["MAKEINFO"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing\" --run makeinfo"
+S["AUTOHEADER"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing\" --run autoheader"
+S["AUTOMAKE"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing\" --run automake-1.11"
+S["AUTOCONF"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing\" --run autoconf"
+S["ACLOCAL"]="${SHELL} \"/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing\" --run aclocal-1.11"
 S["VERSION"]="0.1.0"
 S["PACKAGE"]="IRC"
 S["CYGPATH_W"]="echo"

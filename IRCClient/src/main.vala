@@ -32,6 +32,12 @@ namespace IRC
 			Message msg = new Message("ventzo","Hi!","channel","server", new DateTime.now_local());
 			SQLiteDB.Insert(msg);
 			SQLiteDB.ShowLog("ventzo");
+			
+			MyServer server = new MyServer();
+			
+			server.Connect();
+			stdout.printf ("Server ist verbunden!\n");
+			
 		}
 
 		static int main (string[] args)

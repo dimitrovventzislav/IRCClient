@@ -3,7 +3,7 @@
 
 /* main.vala
  *
- * Copyright (C) 2010  Ventzislav Dimitrov
+ * Copyright (C) 2011  Ventzislav Dimitrov
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@
 #include <glib-object.h>
 #include <stdlib.h>
 #include <string.h>
+#include <gio/gio.h>
+#include <stdio.h>
 
 
 #define IRC_TYPE_MAIN (irc_main_get_type ())
@@ -49,8 +51,18 @@ typedef struct _IRCMainPrivate IRCMainPrivate;
 typedef struct _IRCMessage IRCMessage;
 typedef struct _IRCMessageClass IRCMessageClass;
 #define _g_date_time_unref0(var) ((var == NULL) ? NULL : (var = (g_date_time_unref (var), NULL)))
-#define _irc_message_unref0(var) ((var == NULL) ? NULL : (var = (irc_message_unref (var), NULL)))
+
+#define IRC_TYPE_MY_SERVER (irc_my_server_get_type ())
+#define IRC_MY_SERVER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), IRC_TYPE_MY_SERVER, IRCMyServer))
+#define IRC_MY_SERVER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), IRC_TYPE_MY_SERVER, IRCMyServerClass))
+#define IRC_IS_MY_SERVER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), IRC_TYPE_MY_SERVER))
+#define IRC_IS_MY_SERVER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), IRC_TYPE_MY_SERVER))
+#define IRC_MY_SERVER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), IRC_TYPE_MY_SERVER, IRCMyServerClass))
+
+typedef struct _IRCMyServer IRCMyServer;
+typedef struct _IRCMyServerClass IRCMyServerClass;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
+#define _irc_message_unref0(var) ((var == NULL) ? NULL : (var = (irc_message_unref (var), NULL)))
 
 struct _IRCMain {
 	GObject parent_instance;
@@ -82,6 +94,11 @@ gpointer irc_value_get_message (const GValue* value);
 GType irc_message_get_type (void) G_GNUC_CONST;
 void irc_sq_lite_db_Insert (IRCMessage* message);
 void irc_sq_lite_db_ShowLog (const char* username);
+IRCMyServer* irc_my_server_new (void);
+IRCMyServer* irc_my_server_construct (GType object_type);
+GType irc_my_server_get_type (void) G_GNUC_CONST;
+void irc_my_server_Connect (IRCMyServer* self, GAsyncReadyCallback _callback_, gpointer _user_data_);
+void irc_my_server_Connect_finish (IRCMyServer* self, GAsyncResult* _res_);
 static gint irc_main_main (char** args, int args_length1);
 
 
@@ -102,10 +119,15 @@ void irc_main_run (IRCMain* self) {
 	GDateTime* _tmp0_;
 	IRCMessage* _tmp1_;
 	IRCMessage* msg;
+	IRCMyServer* server;
 	g_return_if_fail (self != NULL);
 	msg = (_tmp1_ = irc_message_new ("ventzo", "Hi!", "channel", "server", _tmp0_ = g_date_time_new_now_local ()), _g_date_time_unref0 (_tmp0_), _tmp1_);
 	irc_sq_lite_db_Insert (msg);
 	irc_sq_lite_db_ShowLog ("ventzo");
+	server = irc_my_server_new ();
+	irc_my_server_Connect (server, NULL, NULL);
+	fprintf (stdout, "Server ist verbunden!\n");
+	_g_object_unref0 (server);
 	_irc_message_unref0 (msg);
 }
 

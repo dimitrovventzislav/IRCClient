@@ -37,7 +37,7 @@ host_triplet = i686-pc-linux-gnu
 bin_PROGRAMS = IRC$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	IRC_vala.stamp Message.c SQLiteDB.c main.c
+	IRC_vala.stamp Message.c MyServer.c SQLiteDB.c main.c
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -50,7 +50,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_1 =
 am_IRC_OBJECTS = IRC-main.$(OBJEXT) IRC-SQLiteDB.$(OBJEXT) \
-	IRC-Message.$(OBJEXT) $(am__objects_1)
+	IRC-Message.$(OBJEXT) IRC-MyServer.$(OBJEXT) $(am__objects_1)
 IRC_OBJECTS = $(am_IRC_OBJECTS)
 am__DEPENDENCIES_1 =
 IRC_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
@@ -78,13 +78,13 @@ DIST_SOURCES = $(IRC_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing" --run aclocal-1.11
+ACLOCAL = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing" --run aclocal-1.11
 ALL_LINGUAS = 
-AMTAR = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing" --run tar
+AMTAR = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing" --run tar
 AR = ar
-AUTOCONF = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing" --run autoconf
-AUTOHEADER = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing" --run autoheader
-AUTOMAKE = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing" --run automake-1.11
+AUTOCONF = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing" --run autoconf
+AUTOHEADER = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing" --run autoheader
+AUTOMAKE = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing" --run automake-1.11
 AWK = mawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -131,7 +131,7 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/missing" --run makeinfo
+MAKEINFO = ${SHELL} "/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/missing" --run makeinfo
 MKDIR_P = /bin/mkdir -p
 MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
@@ -167,10 +167,10 @@ USE_NLS = yes
 VALAC = /usr/bin/valac
 VERSION = 0.1.0
 XGETTEXT = /usr/bin/xgettext
-abs_builddir = /home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/src
-abs_srcdir = /home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/src
-abs_top_builddir = /home/axxessio/Dokumente/Projekte/Meine Projekte/IRC
-abs_top_srcdir = /home/axxessio/Dokumente/Projekte/Meine Projekte/IRC
+abs_builddir = /home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/src
+abs_srcdir = /home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/src
+abs_top_builddir = /home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient
+abs_top_srcdir = /home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
 am__include = include
@@ -198,7 +198,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} '/home/axxessio/Dokumente/Projekte/Meine Projekte/IRC/install-sh'
+install_sh = ${SHELL} '/home/axxessio/Dokumente/Projekte/Meine Projekte/IRCClient/install-sh'
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -229,6 +229,7 @@ IRC_SOURCES = \
 	main.vala \
 	SQLiteDB.vala \
 	Message.vala \
+	MyServer.vala \
 	$(NULL)
 
 IRC_LDADD = \
@@ -343,6 +344,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/IRC-Message.Po
+include ./$(DEPDIR)/IRC-MyServer.Po
 include ./$(DEPDIR)/IRC-SQLiteDB.Po
 include ./$(DEPDIR)/IRC-main.Po
 
@@ -408,6 +410,20 @@ IRC-Message.obj: Message.c
 #	source='Message.c' object='IRC-Message.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -c -o IRC-Message.obj `if test -f 'Message.c'; then $(CYGPATH_W) 'Message.c'; else $(CYGPATH_W) '$(srcdir)/Message.c'; fi`
+
+IRC-MyServer.o: MyServer.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -MT IRC-MyServer.o -MD -MP -MF $(DEPDIR)/IRC-MyServer.Tpo -c -o IRC-MyServer.o `test -f 'MyServer.c' || echo '$(srcdir)/'`MyServer.c
+	$(am__mv) $(DEPDIR)/IRC-MyServer.Tpo $(DEPDIR)/IRC-MyServer.Po
+#	source='MyServer.c' object='IRC-MyServer.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -c -o IRC-MyServer.o `test -f 'MyServer.c' || echo '$(srcdir)/'`MyServer.c
+
+IRC-MyServer.obj: MyServer.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -MT IRC-MyServer.obj -MD -MP -MF $(DEPDIR)/IRC-MyServer.Tpo -c -o IRC-MyServer.obj `if test -f 'MyServer.c'; then $(CYGPATH_W) 'MyServer.c'; else $(CYGPATH_W) '$(srcdir)/MyServer.c'; fi`
+	$(am__mv) $(DEPDIR)/IRC-MyServer.Tpo $(DEPDIR)/IRC-MyServer.Po
+#	source='MyServer.c' object='IRC-MyServer.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -c -o IRC-MyServer.obj `if test -f 'MyServer.c'; then $(CYGPATH_W) 'MyServer.c'; else $(CYGPATH_W) '$(srcdir)/MyServer.c'; fi`
 $(srcdir)/main.c: $(srcdir)/IRC_vala.stamp
 	@if test -f $@; then :; else \
 	  rm -f $(srcdir)/IRC_vala.stamp; \
@@ -419,6 +435,11 @@ $(srcdir)/SQLiteDB.c: $(srcdir)/IRC_vala.stamp
 	  $(am__cd) $(srcdir) && $(MAKE) $(AM_MAKEFLAGS) IRC_vala.stamp; \
 	fi
 $(srcdir)/Message.c: $(srcdir)/IRC_vala.stamp
+	@if test -f $@; then :; else \
+	  rm -f $(srcdir)/IRC_vala.stamp; \
+	  $(am__cd) $(srcdir) && $(MAKE) $(AM_MAKEFLAGS) IRC_vala.stamp; \
+	fi
+$(srcdir)/MyServer.c: $(srcdir)/IRC_vala.stamp
 	@if test -f $@; then :; else \
 	  rm -f $(srcdir)/IRC_vala.stamp; \
 	  $(am__cd) $(srcdir) && $(MAKE) $(AM_MAKEFLAGS) IRC_vala.stamp; \
@@ -550,6 +571,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 	-rm -f IRC_vala.stamp
 	-rm -f Message.c
+	-rm -f MyServer.c
 	-rm -f SQLiteDB.c
 	-rm -f main.c
 clean: clean-am

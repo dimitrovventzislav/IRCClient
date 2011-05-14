@@ -37,7 +37,7 @@ host_triplet = @host@
 bin_PROGRAMS = IRC$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	IRC_vala.stamp Message.c SQLiteDB.c main.c
+	IRC_vala.stamp Message.c MyServer.c SQLiteDB.c main.c
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -50,7 +50,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_1 =
 am_IRC_OBJECTS = IRC-main.$(OBJEXT) IRC-SQLiteDB.$(OBJEXT) \
-	IRC-Message.$(OBJEXT) $(am__objects_1)
+	IRC-Message.$(OBJEXT) IRC-MyServer.$(OBJEXT) $(am__objects_1)
 IRC_OBJECTS = $(am_IRC_OBJECTS)
 am__DEPENDENCIES_1 =
 IRC_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
@@ -229,6 +229,7 @@ IRC_SOURCES = \
 	main.vala \
 	SQLiteDB.vala \
 	Message.vala \
+	MyServer.vala \
 	$(NULL)
 
 IRC_LDADD = \
@@ -343,6 +344,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/IRC-Message.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/IRC-MyServer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/IRC-SQLiteDB.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/IRC-main.Po@am__quote@
 
@@ -408,6 +410,20 @@ IRC-Message.obj: Message.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='Message.c' object='IRC-Message.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -c -o IRC-Message.obj `if test -f 'Message.c'; then $(CYGPATH_W) 'Message.c'; else $(CYGPATH_W) '$(srcdir)/Message.c'; fi`
+
+IRC-MyServer.o: MyServer.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -MT IRC-MyServer.o -MD -MP -MF $(DEPDIR)/IRC-MyServer.Tpo -c -o IRC-MyServer.o `test -f 'MyServer.c' || echo '$(srcdir)/'`MyServer.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/IRC-MyServer.Tpo $(DEPDIR)/IRC-MyServer.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='MyServer.c' object='IRC-MyServer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -c -o IRC-MyServer.o `test -f 'MyServer.c' || echo '$(srcdir)/'`MyServer.c
+
+IRC-MyServer.obj: MyServer.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -MT IRC-MyServer.obj -MD -MP -MF $(DEPDIR)/IRC-MyServer.Tpo -c -o IRC-MyServer.obj `if test -f 'MyServer.c'; then $(CYGPATH_W) 'MyServer.c'; else $(CYGPATH_W) '$(srcdir)/MyServer.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/IRC-MyServer.Tpo $(DEPDIR)/IRC-MyServer.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='MyServer.c' object='IRC-MyServer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(IRC_CFLAGS) $(CFLAGS) -c -o IRC-MyServer.obj `if test -f 'MyServer.c'; then $(CYGPATH_W) 'MyServer.c'; else $(CYGPATH_W) '$(srcdir)/MyServer.c'; fi`
 $(srcdir)/main.c: $(srcdir)/IRC_vala.stamp
 	@if test -f $@; then :; else \
 	  rm -f $(srcdir)/IRC_vala.stamp; \
@@ -419,6 +435,11 @@ $(srcdir)/SQLiteDB.c: $(srcdir)/IRC_vala.stamp
 	  $(am__cd) $(srcdir) && $(MAKE) $(AM_MAKEFLAGS) IRC_vala.stamp; \
 	fi
 $(srcdir)/Message.c: $(srcdir)/IRC_vala.stamp
+	@if test -f $@; then :; else \
+	  rm -f $(srcdir)/IRC_vala.stamp; \
+	  $(am__cd) $(srcdir) && $(MAKE) $(AM_MAKEFLAGS) IRC_vala.stamp; \
+	fi
+$(srcdir)/MyServer.c: $(srcdir)/IRC_vala.stamp
 	@if test -f $@; then :; else \
 	  rm -f $(srcdir)/IRC_vala.stamp; \
 	  $(am__cd) $(srcdir) && $(MAKE) $(AM_MAKEFLAGS) IRC_vala.stamp; \
@@ -550,6 +571,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 	-rm -f IRC_vala.stamp
 	-rm -f Message.c
+	-rm -f MyServer.c
 	-rm -f SQLiteDB.c
 	-rm -f main.c
 clean: clean-am

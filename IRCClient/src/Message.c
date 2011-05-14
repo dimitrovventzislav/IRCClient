@@ -62,11 +62,11 @@ enum  {
 };
 IRCMessage* irc_message_new (const char* username, const char* message, const char* channel, const char* server, GDateTime* time);
 IRCMessage* irc_message_construct (GType object_type, const char* username, const char* message, const char* channel, const char* server, GDateTime* time);
-static void irc_message_set_Username (IRCMessage* self, const char* value);
+void irc_message_set_Username (IRCMessage* self, const char* value);
 void irc_message_set_Time (IRCMessage* self, GDateTime* value);
-static void irc_message_set_Channel (IRCMessage* self, const char* value);
-static void irc_message_set_Server (IRCMessage* self, const char* value);
-static void irc_message_set_MessageContent (IRCMessage* self, const char* value);
+void irc_message_set_Channel (IRCMessage* self, const char* value);
+void irc_message_set_Server (IRCMessage* self, const char* value);
+void irc_message_set_MessageContent (IRCMessage* self, const char* value);
 const char* irc_message_get_Username (IRCMessage* self);
 GDateTime* irc_message_get_Time (IRCMessage* self);
 const char* irc_message_get_Channel (IRCMessage* self);
@@ -107,7 +107,7 @@ const char* irc_message_get_Username (IRCMessage* self) {
 }
 
 
-static void irc_message_set_Username (IRCMessage* self, const char* value) {
+void irc_message_set_Username (IRCMessage* self, const char* value) {
 	char* _tmp0_;
 	g_return_if_fail (self != NULL);
 	self->priv->_Username = (_tmp0_ = g_strdup (value), _g_free0 (self->priv->_Username), _tmp0_);
@@ -142,7 +142,7 @@ const char* irc_message_get_Channel (IRCMessage* self) {
 }
 
 
-static void irc_message_set_Channel (IRCMessage* self, const char* value) {
+void irc_message_set_Channel (IRCMessage* self, const char* value) {
 	char* _tmp0_;
 	g_return_if_fail (self != NULL);
 	self->priv->_Channel = (_tmp0_ = g_strdup (value), _g_free0 (self->priv->_Channel), _tmp0_);
@@ -157,7 +157,7 @@ const char* irc_message_get_Server (IRCMessage* self) {
 }
 
 
-static void irc_message_set_Server (IRCMessage* self, const char* value) {
+void irc_message_set_Server (IRCMessage* self, const char* value) {
 	char* _tmp0_;
 	g_return_if_fail (self != NULL);
 	self->priv->_Server = (_tmp0_ = g_strdup (value), _g_free0 (self->priv->_Server), _tmp0_);
@@ -180,7 +180,7 @@ const char* irc_message_get_MessageContent (IRCMessage* self) {
 }
 
 
-static void irc_message_set_MessageContent (IRCMessage* self, const char* value) {
+void irc_message_set_MessageContent (IRCMessage* self, const char* value) {
 	char* _tmp0_;
 	g_return_if_fail (self != NULL);
 	self->priv->_MessageContent = (_tmp0_ = g_strdup (value), _g_free0 (self->priv->_MessageContent), _tmp0_);

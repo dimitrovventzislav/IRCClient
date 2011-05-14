@@ -11,6 +11,7 @@ IRC_SOURCES = \
 	main.vala \
 	SQLiteDB.vala \
 	Message.vala \
+	MyServer.vala \
 	$(NULL)
 
 IRC_LDADD = \
