@@ -240,13 +240,14 @@ IRC_LDFLAGS = \
 	-lsqlite3 \
 	-lgio-2.0 \
 	-lgmodule-2.0 \
+	-ldaemon \
 	$(NULL)
 
 IRC_VALAFLAGS = \
-	--pkg gio-2.0 \
 	--pkg sqlite3 \
-	--pkg gmodule-2.0 \
+	--pkg gio-2.0 \
 	--pkg libdaemon \
+	--pkg gmodule-2.0 \
 	--thread \
 	$(NULL)
 

@@ -144,7 +144,6 @@ static gint irc_main_main (char** args, int args_length1) {
 
 
 int main (int argc, char ** argv) {
-	g_thread_init (NULL);
 	g_type_init ();
 	return irc_main_main (argv, argc);
 }
